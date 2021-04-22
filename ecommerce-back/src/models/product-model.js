@@ -17,7 +17,7 @@ const ProductSchema = mongoose.Schema({
         type: Object,
         required: true
     }],
-    productDescription: {
+    description: {
         type: String,
         required: true
     },
@@ -36,8 +36,13 @@ const ProductSchema = mongoose.Schema({
     comments: [{
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Comment',
+        autopopulate:{
+            maxDepth: 2
+        }
     }]
 })
+
+ProductSchema.plugin(require('mongoose-autopopulate'))
 
 const ProductModel = mongoose.model('Product', ProductSchema)
 

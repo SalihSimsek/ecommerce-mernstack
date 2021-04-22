@@ -7,7 +7,6 @@ const registerValidation = (data) => {
     const schema = Joi.object({
         storeName: Joi.string().min(2).required(),
         email: Joi.string().email().required(),
-        address: Joi.string().min(10).required(),
         phone: Joi.string().min(10).required(),
         password: Joi.string().min(8).required(),
         c_password: Joi.string().valid(Joi.ref('password')).required(),

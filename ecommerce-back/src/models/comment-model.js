@@ -5,15 +5,24 @@ const CommentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    owner: {
+    user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
+        autopopulate:{
+            maxDepth: 1
+        }
     },
     product: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Product'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
+
+CommentSchema.plugin(require('mongoose-autopopulate'))
 
 const CommentModel = mongoose.model('Comment',CommentSchema)
 

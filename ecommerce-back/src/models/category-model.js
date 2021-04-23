@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const CategorySchema = mongoose.Schema({
     categoryName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     products: [{
         type: mongoose.SchemaTypes.ObjectId,

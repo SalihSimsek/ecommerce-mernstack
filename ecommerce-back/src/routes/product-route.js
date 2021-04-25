@@ -9,7 +9,7 @@ router.get('/', getAllProducts)
 
 router.get('/:categoryId', getProductsFromCategory)
 
-router.get('/:id', getProduct)
+router.get('/:id/detail', getProduct)
 
 router.post('/create', Auth, imageUploader.upload.array('photos', 5), createProduct)
 

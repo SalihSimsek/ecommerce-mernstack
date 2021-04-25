@@ -9,6 +9,7 @@ const CategoryRoute = require('./src/routes/category-route')
 const AddressRoute = require('./src/routes/address-route')
 const ProductRoute = require('./src/routes/product-route')
 const CommentRoute = require('./src/routes/comment-route')
+const CartRoute = require('./src/routes/cart-routes')
 
 const app = express()
 
@@ -32,6 +33,7 @@ app.use('/api/category', CategoryRoute)
 app.use('/api/address', AddressRoute)
 app.use('/api/product', ProductRoute)
 app.use('/api/comment', CommentRoute)
+app.use('/api/cart',CartRoute)
 
 
 module.exports = app

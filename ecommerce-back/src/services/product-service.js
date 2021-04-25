@@ -14,6 +14,10 @@ class ProductService extends BaseService {
             .skip(skip)
             .limit(limit)
     }
+
+    async getOneProduct(object) {
+        return this.model.findOne(object)
+    }
 }
 
 module.exports = new ProductService()

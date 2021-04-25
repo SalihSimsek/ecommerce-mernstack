@@ -8,10 +8,10 @@ const createAddressForUser = async (req, res) => {
         const address = await AddressService.add(req.body)
         user.address.push(address)
         await user.save()
-        res.status(200).send(address)
+        res.status(201).send(address)
 
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -21,10 +21,10 @@ const createAddressForStore = async (req, res) => {
         const address = await AddressService.add(req.body)
         store.address = address
         await store.save()
-        res.status(200).send(address)
+        res.status(201).send(address)
 
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -33,13 +33,13 @@ const deleteAddressFromUser = async (req, res) => {
         const user = await UserService.find({ _id: req.user })
         const deletedAddress = await AddressService.delete(req.params.id)
         if (deletedAddress.deletedCount !== 1)
-            return res.status(400).send({ 'message': 'Address not found' })
+            return res.status(404).send({ 'message': 'Address not found' })
 
         user.address.remove(req.params.id)
         await user.save()
         res.status(200).send({ 'message': 'Succesfully deleted' })
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -54,7 +54,7 @@ const deleteAddressFromStore = async (req, res) => {
         await store.save()
         res.status(200).send({ 'message': 'Succesfully deleted' })
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 

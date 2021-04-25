@@ -4,11 +4,11 @@ const CategoryService = require('../services/category-service')
 
 const getAllProducts = async (req, res) => {
     try {
-        if(!req.query.search) req.query.search = ''
+        if (!req.query.search) req.query.search = ''
         const products = await ProductService.findAll(req.query.search)
         res.status(200).send(products)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -33,21 +33,21 @@ const getProductsFromCategory = async (req, res) => {
 
         const products = await ProductService.find(object, limit, skip, sort)
 
-        if (!products) return res.status(400).send({ 'message': 'Category not found' })
+        if (!products) return res.status(404).send({ 'message': 'Category not found' })
 
-        res.send(products)
+        res.status(200).send(products)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
 const getProduct = async (req, res) => {
     try {
-        const product = await ProductService.find({ _id: req.params.id })
+        const product = await ProductService.getOneProduct({ _id: req.params.id })
         if (!product) return res.status(404).send({ 'message': 'Product not found' })
         res.status(200).send(product)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -68,10 +68,9 @@ const createProduct = async (req, res) => {
         store.products.push(createdProduct)
         await store.save()
 
-
-        res.status(200).send(createdProduct)
+        res.status(201).send(createdProduct)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -94,7 +93,7 @@ const updateProduct = async (req, res) => {
         res.status(200).send(updatedProduct)
 
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -113,7 +112,7 @@ const updateProductPhotos = async (req, res) => {
         const updatedProduct = await ProductService.update(req.params.id, product)
         res.status(200).send(updatedProduct)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -136,7 +135,7 @@ const deleteProduct = async (req, res) => {
         await store.save()
         res.status(200).send({ 'message': 'Succesfully deleted' })
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 

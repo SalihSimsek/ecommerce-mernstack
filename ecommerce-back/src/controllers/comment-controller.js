@@ -18,10 +18,10 @@ const sendCommentToPost = async (req, res) => {
 
         product.comments.push(comment)
         await product.save()
-        res.status(200).send(comment)
+        res.status(201).send(comment)
 
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
@@ -45,7 +45,7 @@ const deleteComment = async (req, res) => {
         res.status(200).send({ 'message': 'Succesfully deleted' })
 
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 

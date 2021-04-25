@@ -22,23 +22,31 @@ const register = async (req, res) => {
     //Create store
     try {
         const createdStore = await StoreService.add(store)
-        res.status(200).send(createdStore)
+        res.status(201).send(createdStore)
     }
     catch (e) {
-        return res.status(400).send({ 'message': 'Unexpected thing happened. Try again.' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 
 const login = async (req, res) => {
-    const store = await StoreService.find({ email: req.body.email })
-    const token = jwt.sign({ _id: store._id }, process.env.TOKEN_SECRET)
-    res.status(200).send({ 'token': token, 'id': store._id, 'email': store.email })
+    try {
+        const store = await StoreService.find({ email: req.body.email })
+        const token = jwt.sign({ _id: store._id }, process.env.TOKEN_SECRET)
+        res.status(200).send({ 'token': token, 'id': store._id, 'email': store.email })
+    } catch (e) {
+        res.status(500).send({ 'message': 'Server error' })
+    }
 }
 
 const storeInfo = async (req, res) => {
-    const store = await StoreService.find({ _id: req.user })
-    if (!store) return res.status(400).send({ 'message': 'Store not found' })
-    res.status(200).send(store)
+    try {
+        const store = await StoreService.find({ _id: req.user })
+        if (!store) return res.status(404).send({ 'message': 'Store not found' })
+        res.status(200).send(store)
+    } catch (e) {
+        res.status(500).send({ 'message': 'Server error' })
+    }
 }
 
 const changePassword = async (req, res) => {
@@ -56,7 +64,7 @@ const changePassword = async (req, res) => {
 
         res.status(200).send(updatedStore)
     } catch (e) {
-        res.status(400).send({ 'message': 'Server error' })
+        res.status(500).send({ 'message': 'Server error' })
     }
 }
 

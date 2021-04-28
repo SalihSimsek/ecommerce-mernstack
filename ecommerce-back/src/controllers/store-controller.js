@@ -33,7 +33,7 @@ const login = async (req, res) => {
     try {
         const store = await StoreService.find({ email: req.body.email })
         const token = jwt.sign({ _id: store._id }, process.env.TOKEN_SECRET)
-        res.status(200).send({ 'token': token, 'id': store._id, 'email': store.email })
+        res.status(200).send({ 'token': token, 'id': store._id, 'email': store.email,'storeName':store.storeName })
     } catch (e) {
         res.status(500).send({ 'message': 'Server error' })
     }

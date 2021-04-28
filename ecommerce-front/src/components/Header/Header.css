@@ -1,0 +1,143 @@
+.header {
+  width: 100%;
+  height: 6rem;
+  background: var(--main-color);
+}
+
+.header_container {
+  width: 80%;
+  height: 6rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_containerLogo {
+  flex: 0.15;
+}
+
+.header_containerLogo > h1 > a {
+  font-size: 3rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.header_containerSearch {
+  flex: 0.6;
+  display: flex;
+  justify-content: center;
+}
+
+.category_select {
+  height: 4rem;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+.search_container {
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  width: 60%;
+}
+
+.search_containerInput {
+  height: 4rem;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.search_containerIcon {
+  font-size: 3rem !important;
+  height: 4rem !important;
+  background: #fff;
+}
+
+.header_containerIcons {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button_container,
+.button_containerCart {
+  border: 1px solid white;
+  background: #fff;
+  width: 48%;
+  height: 4.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  position: relative;
+  min-width: 14rem;
+}
+
+.login_register_card {
+  display: none;
+  position: absolute;
+  border: 1px solid #fff;
+  background: white;
+  min-height: 5rem;
+  width: 14rem;
+  top: 5rem;
+  box-shadow: 0px 1px 1px 1px var(--main-color);
+}
+
+.login_register_cardArrow {
+  display: none;
+  position: absolute;
+  top: 4.5rem;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+
+.login_register_cardDiv {
+  display: none;
+  position: absolute;
+  top: 4.5rem;
+  width: 14rem;
+  height: 5rem;
+}
+
+.login_register_card > .items > p > a{
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+}
+
+.show_card{
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .button_containerCart{
+    position: relative;
+} */
+
+.count {
+  position: absolute;
+  left: 3.5rem;
+  top: 0.2rem;
+  background: var(--main-color);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.button_container > .icon_user,
+.button_containerCart > .icon_cart {
+  margin-left: 0.2rem;
+  font-size: 3rem !important;
+}

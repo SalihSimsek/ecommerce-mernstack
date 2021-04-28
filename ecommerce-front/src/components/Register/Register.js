@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import "./Register.css";
 const Register = () => {
@@ -16,7 +17,7 @@ const Register = () => {
   return (
     <div className="register">
       <div className="ecom_logo">
-        <h1>nakaulos</h1>
+        <h1><Link to="/">nakaulos</Link></h1>
       </div>
       <div className="form_container form_container_extend">
         <div className="account_option_buttons">

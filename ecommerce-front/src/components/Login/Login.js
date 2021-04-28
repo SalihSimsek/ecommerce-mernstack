@@ -16,7 +16,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="ecom_logo">
-        <h1>nakaulos</h1>
+        <h1><Link to="/">nakaulos</Link></h1>
       </div>
       <div className="form_container">
         <div className="account_option_buttons">

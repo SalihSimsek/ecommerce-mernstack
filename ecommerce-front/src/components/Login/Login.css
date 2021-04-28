@@ -12,9 +12,10 @@
   margin-bottom: 1rem;
 }
 
-.ecom_logo > h1 {
+.ecom_logo > h1 > a{
   font-size: 3rem;
   color: var(--main-color);
+  text-decoration: none;
 }
 
 .form_container {

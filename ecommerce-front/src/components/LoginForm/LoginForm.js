@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from '../../axios'
 import './LoginForm.css'
 const LoginForm = ({ form }) => {
@@ -6,19 +7,23 @@ const LoginForm = ({ form }) => {
     const [password, setPassword] = useState("");
     const [errorStatus, setErrorStatus] = useState(false);
 
+    const history = useHistory()
+
     useEffect(() => {
         setErrorStatus(false)
-    },[form])
+    }, [form])
 
     const userLogin = () => {
         if (email !== "" && password !== "") {
             axios
                 .post("user/login", { email: email, password: password })
                 .then((result) => {
+                    result.data.account = 'user'
                     localStorage.setItem("token", JSON.stringify(result.data));
                     setEmail("");
                     setPassword("");
                     setErrorStatus(false);
+                    history.push('/')
                 })
                 .catch((err) => {
                     setErrorStatus(true);
@@ -33,10 +38,12 @@ const LoginForm = ({ form }) => {
             axios
                 .post("store/login", { email: email, password: password })
                 .then((result) => {
+                    result.data.account = 'store'
                     localStorage.setItem("token", JSON.stringify(result.data));
                     setEmail("");
                     setPassword("");
                     setErrorStatus(false);
+                    history.push('/')
                 })
                 .catch((err) => {
                     setErrorStatus(true);

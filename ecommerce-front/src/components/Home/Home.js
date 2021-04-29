@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import Products from '../Products/Products'
 import './Home.css'
@@ -8,8 +9,7 @@ const Home = () => {
         <div className="home">
             <Header />
             <Products />
-            {/* Random Products */}
-            {/* Footer */}
+            <Footer />
         </div>
     )
 }

@@ -7,7 +7,7 @@
 }
 
 .productCard {
-  height: 40rem;
+  max-height: 40rem;
   width: 30rem;
   background: #fff;
   border-radius: 1rem;
@@ -18,7 +18,6 @@
 .productCard:hover{
   box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
   transition: .3s ease-in-out;
-
 }
 
 .productCard_photo {

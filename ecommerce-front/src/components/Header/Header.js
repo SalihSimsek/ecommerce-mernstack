@@ -1,17 +1,20 @@
 import { PersonOutline, Search, ShoppingCart } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Header.css";
 const Header = () => {
+  const history = useHistory();
   const [show, setShow] = useState(false);
   const item = JSON.parse(localStorage.getItem("token"));
   const [username, setUsername] = useState("");
   useEffect(() => {
-    if (item.account === "store") {
-      setUsername(item.storeName);
-    } else {
-      const username = item.email.split("@");
-      setUsername(username[0]);
+    if (item) {
+      if (item.account === "store") {
+        setUsername(item.storeName);
+      } else {
+        const username = item.email.split("@");
+        setUsername(username[0]);
+      }
     }
   }, [item]);
   return (
@@ -64,17 +67,22 @@ const Header = () => {
                   <p>
                     <Link to="/">Orders</Link>
                   </p>
-                  <p>
-                    <Link to="/">Logout</Link>
+                  <p
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      history.push("/login");
+                    }}
+                  >
+                    Logout
                   </p>
                 </div>
               ) : (
                 <div className="items">
                   <p>
-                    <Link to="/">Login</Link>
+                    <Link to="/login">Login</Link>
                   </p>
                   <p>
-                    <Link to="/">Register</Link>
+                    <Link to="/register">Register</Link>
                   </p>
                 </div>
               )}

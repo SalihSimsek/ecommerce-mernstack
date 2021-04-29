@@ -5,7 +5,9 @@ const CategoryService = require('../services/category-service')
 const getAllProducts = async (req, res) => {
     try {
         if (!req.query.search) req.query.search = ''
-        const products = await ProductService.findAll(req.query.search)
+        const limit = parseInt(req.query.limit)
+        const skip = parseInt(req.query.skip)
+        const products = await ProductService.findAll(req.query.search,limit,skip)
         res.status(200).send(products)
     } catch (e) {
         res.status(500).send({ 'message': 'Server error' })

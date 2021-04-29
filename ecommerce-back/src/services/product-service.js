@@ -4,8 +4,9 @@ const ProductModel = require('../models/product-model')
 class ProductService extends BaseService {
     model = ProductModel
 
-    async findAll(searching) {
+    async findAll(searching,limit,skip) {
         return this.model.find({ productName: { $regex: searching, $options: '$i' } })
+            .limit(limit).skip(skip)
     }
 
     async find(object, limit, skip, sort) {

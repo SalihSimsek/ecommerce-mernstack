@@ -4,16 +4,20 @@ import Login from './components/Login/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Register from './components/Register/Register';
 import Home from './components/Home/Home';
+import Search from './components/Search/Search';
+import Header from './components/Header/Header'
 
 function App() {
   return (
     <div className="app">
       <Router>
+        <Header />
         <Switch>
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
-          <Route path="/" component={Home} />
-          {/* register */}
+          <Route path="/" exact component={Home} />
+          <Route path='/search/:categoryId?' component={Search} />
+          <Route path='/search' exact component={Search} />
         </Switch>
       </Router>
     </div>

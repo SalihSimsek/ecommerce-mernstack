@@ -1,0 +1,12 @@
+.search {
+  min-height: 100vh;
+  background: rgb(238, 238, 238);
+}
+
+.search_resultContainer {
+  max-width: 80%;
+  margin: 0 auto;
+  padding-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+}

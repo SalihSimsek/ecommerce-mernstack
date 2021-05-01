@@ -7,7 +7,21 @@ const getAllProducts = async (req, res) => {
         if (!req.query.search) req.query.search = ''
         const limit = parseInt(req.query.limit)
         const skip = parseInt(req.query.skip)
-        const products = await ProductService.findAll(req.query.search, limit, skip)
+        const minPrice = parseInt(req.query.minprice) || 0
+        const maxPrice = parseInt(req.query.maxprice) || 999999
+
+        const sort = {}
+
+        if (req.query.sortBy) {
+            const str = req.query.sortBy.split(':')
+            sort[str[0]] = str[1] === 'desc' ? -1 : 1
+        }
+
+        console.log(sort)
+
+        object = { price: { $gte: minPrice, $lte: maxPrice }, productName: { $regex: req.query.search, $options: '$i' } }
+
+        const products = await ProductService.find(object, limit, skip,sort)
         res.status(200).send(products)
     } catch (e) {
         res.status(500).send({ 'message': 'Server error' })
@@ -16,7 +30,7 @@ const getAllProducts = async (req, res) => {
 
 const getProductsFromCategory = async (req, res) => {
     try {
-        if(!req.query.search) req.query.search = ''
+        if (!req.query.search) req.query.search = ''
         //How many items see on page
         const limit = parseInt(req.query.limit)
         //How many items will be jumped to forward or back

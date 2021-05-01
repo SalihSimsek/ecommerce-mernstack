@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Products.css";
 import axios from "../../axios";
+import ProductCard from "../ProductCard/ProductCard";
 
 const Products = () => {
-  const photoUrl = "http://localhost:3001/api/photos/";
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -14,20 +14,10 @@ const Products = () => {
     };
     fetchProducts();
   }, []);
-  console.log(products.length)
   return (
     <div className="products">
       {products?.map((item) => (
-        <div className="productCard" key={item._id}>
-          <div className="productCard_photo">
-            <img src={`${photoUrl}${item.cover.filename}`} alt={item.productName} />
-          </div>
-          <div className="productCard_info">
-          <div className="productCard_infoName">{item.productName}</div>
-          <div className="productCard_infoPrice">${item.price}</div>
-          <div className="productCard_infoAdd">Add to cart</div>
-          </div>
-        </div>
+        <ProductCard key={item._id} data={item} />
       ))}
     </div>
   );

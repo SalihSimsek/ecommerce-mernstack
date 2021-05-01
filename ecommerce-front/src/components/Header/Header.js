@@ -1,12 +1,17 @@
 import { PersonOutline, Search, ShoppingCart } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import axios from "../../axios";
 import "./Header.css";
 const Header = () => {
   const history = useHistory();
   const [show, setShow] = useState(false);
   const item = JSON.parse(localStorage.getItem("token"));
   const [username, setUsername] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchParameter, setSearchParameter] = useState("");
+
   useEffect(() => {
     if (item) {
       if (item.account === "store") {
@@ -16,7 +21,25 @@ const Header = () => {
         setUsername(username[0]);
       }
     }
-  }, [item]);
+    const getCategories = async () => {
+      const result = await axios.get("category/categories");
+      setCategories(result.data);
+      return result.data;
+    };
+    getCategories();
+  }, [item, categories]);
+
+  const searchProduct = (e) => {
+    e.preventDefault()
+    // history.push(`/search/${selectedCategory}?search=${searchParameter}`)
+    if (selectedCategory === '' || selectedCategory === 'none') {
+      history.push(`/search?search=${searchParameter}`)
+    }
+    else {
+      history.push(`/search/${selectedCategory}?search=${searchParameter}`)
+    }
+  }
+  if (window.location.pathname === '/login' || window.location.pathname === '/register') return null;
   return (
     <div className="header">
       <div className="header_container">
@@ -25,19 +48,29 @@ const Header = () => {
             <Link to="/">nakaulos</Link>
           </h1>
         </div>
-        <div className="header_containerSearch">
-          <select className="category_select">
-            <option value="" disabled selected>
+        <form className="header_containerSearch" onSubmit={searchProduct}>
+          <select
+            className="category_select"
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option disabled selected value="none">
               Categories
             </option>
-            <option value="Tech">Tech</option>
-            <option value="Home">Home</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.categoryName}
+              </option>
+            ))}
           </select>
           <div className="search_container">
-            <input type="text" className="search_containerInput" />
+            <input
+              type="text"
+              className="search_containerInput"
+              onChange={(e) => setSearchParameter(e.target.value)}
+            />
             <Search className="search_containerIcon" />
           </div>
-        </div>
+        </form>
         <div className="header_containerIcons">
           <div
             onMouseEnter={() => setShow(true)}

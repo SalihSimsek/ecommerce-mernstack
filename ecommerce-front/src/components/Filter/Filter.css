@@ -1,0 +1,55 @@
+.filter {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 2rem;
+  background: var(--main-color);
+}
+
+.filter_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter_containerTop {
+  display: flex;
+}
+
+.filter_containerPrice,
+.filter_containerSortWith,
+.filter_containerSort {
+  min-width: 40rem;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.33;
+  margin: 1rem 0;
+}
+
+.price_input {
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.filter_containerSortWith,
+.filter_containerSort {
+  padding: 0 2rem;
+}
+
+.sort_type > span,
+.sort_with > span {
+  font-size: 1.6rem;
+  padding-left: 0.2rem;
+}
+
+.filter_button {
+  min-width: 20rem;
+  font-size: 2rem;
+  background: #fff;
+  outline: none;
+  border: 1px solid lightgray;
+  padding: 0.5rem 0;
+}

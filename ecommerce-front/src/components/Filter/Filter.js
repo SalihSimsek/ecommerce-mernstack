@@ -17,12 +17,12 @@ const Filter = () => {
   useEffect(() => { });
 
   const filterProduct = (e) => {
-    if(!categoryId) categoryId = ''
+    if (!categoryId) categoryId = ''
     if (categoryId === '' || categoryId === 'none') {
       history.push(`/search?search=${query.get('search')}&minprice=${minPrice}&maxprice=${maxPrice}&sortBy=${sortWith}:${sortType}`)
     }
     else {
-      history.push(`/search/${categoryId}?search=${query.get('search')}`)
+      history.push(`/search/${categoryId}?search=${query.get('search')}&minprice=${minPrice}&maxprice=${maxPrice}&sortBy=${sortWith}:${sortType}`)
     }
   };
 

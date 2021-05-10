@@ -11,32 +11,37 @@ const QueryFunc = () => {
 
 const Search = () => {
   const query = QueryFunc();
+  const searchParam = query.get('search')
+  const minPrice = query.get('minprice')
+  const maxPrice = query.get('maxprice')
+  const sortBy = query.get('sortBy')
   const [products, setProducts] = useState([]);
   let { categoryId } = useParams();
   const [limit, setLimit] = useState(20);
   const [skip, setSkip] = useState(0);
   const [url, setUrl] = useState("");
+
   useEffect(() => {
+    console.log(url)
     let isSubs = true;
-    if (!categoryId)
-    {console.log('in')
+    if (!categoryId) {
       setUrl(
-        `product?search=${query.get("search")}&limit=${limit}&skip=${skip}&minprice=${query.get('minprice')}&maxprice=${query.get('maxprice')}&sortBy=${query.get('sortBy')}`
-      );}
-    else
-      setUrl(
-        `product/${categoryId}?search=${query.get(
-          "search"
-        )}&limit=${limit}&skip=${skip}`
+        `product?search=${searchParam}&limit=${limit}&skip=${skip}&minprice=${minPrice}&maxprice=${maxPrice}&sortBy=${sortBy}`
       );
-      axios.get(url).then(result =>{
-        if(isSubs){
-          setProducts(result.data)
-          return result
-        }
-      });
+    }
+    else {
+      setUrl(
+        `product/${categoryId}?search=${searchParam}&limit=${limit}&skip=${skip}&minprice=${minPrice}&maxprice=${maxPrice}&sortBy=${sortBy}`
+      );
+    }
+    axios.get(url).then(result => {
+      if (isSubs) {
+        setProducts(result.data)
+        return result
+      }
+    });
     return () => (isSubs = false);
-  },[url,categoryId,limit,skip,query]);
+  }, [categoryId, searchParam, minPrice, maxPrice, sortBy, url, limit, skip]);
 
   return (
     <div className="search">

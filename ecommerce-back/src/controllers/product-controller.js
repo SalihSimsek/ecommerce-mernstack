@@ -17,11 +17,9 @@ const getAllProducts = async (req, res) => {
             sort[str[0]] = str[1] === 'desc' ? -1 : 1
         }
 
-        console.log(sort)
-
         object = { price: { $gte: minPrice, $lte: maxPrice }, productName: { $regex: req.query.search, $options: '$i' } }
 
-        const products = await ProductService.find(object, limit, skip,sort)
+        const products = await ProductService.find(object, limit, skip, sort)
         res.status(200).send(products)
     } catch (e) {
         res.status(500).send({ 'message': 'Server error' })
@@ -72,7 +70,7 @@ const createProduct = async (req, res) => {
     const files = req.files
     if (!files) return res.status(400).send({ 'message': 'Loading error' })
 
-    req.body.cover = req.files.splice(0, 1)[0]
+    req.body.cover = req.files[0]
     req.body.photos = req.files
     req.body.store = req.user._id
 

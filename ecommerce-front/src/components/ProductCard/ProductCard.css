@@ -5,6 +5,8 @@
   border-radius: 1rem;
   margin: 1rem auto;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 
 .productCard:hover {

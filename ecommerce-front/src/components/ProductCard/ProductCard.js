@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './ProductCard.css'
+
 const ProductCard = ({ data }) => {
     const photoUrl = "http://localhost:3001/api/photos/";
 
     return (
-        <div className="productCard" key={data._id}>
+        <Link to={`/product-detail/${data._id}`} className="productCard" key={data._id}>
             <div className="productCard_photo">
                 <img src={`${photoUrl}${data.cover.filename}`} alt={data.productName} />
             </div>
@@ -13,7 +15,7 @@ const ProductCard = ({ data }) => {
                 <div className="productCard_infoPrice">${data.price}</div>
                 <div className="productCard_infoAdd">Add to cart</div>
             </div>
-        </div>
+        </Link>
     )
 }
 

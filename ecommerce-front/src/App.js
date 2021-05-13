@@ -6,6 +6,7 @@ import Register from './components/Register/Register';
 import Home from './components/Home/Home';
 import Search from './components/Search/Search';
 import Header from './components/Header/Header'
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path='/search/:categoryId?' component={Search} />
           <Route path='/search' exact component={Search} />
+          <Route path='/product-detail/:productId' component={ProductDetail} />
         </Switch>
       </Router>
     </div>

@@ -2,6 +2,8 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
+  if (window.location.pathname === '/login' || window.location.pathname === '/register') return null;
+
   return (
     <div className="footer">
       <div className="footer_container">

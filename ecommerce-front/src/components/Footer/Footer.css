@@ -1,7 +1,7 @@
 .footer {
   height: 10vh;
-  margin-top: 2rem;
   border-top: 0.5rem solid white;
+  background: rgb(238, 238, 238);
 }
 
 .footer_container {

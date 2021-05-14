@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './ProductCard.css'
 
-const ProductCard = ({ data }) => {
+const ProductCard = ({ data, same }) => {
     const photoUrl = "http://localhost:3001/api/photos/";
 
     return (
@@ -13,8 +13,7 @@ const ProductCard = ({ data }) => {
             <div className="productCard_info">
                 <div className="productCard_infoName">{data.productName}</div>
                 <div className="productCard_infoPrice">${data.price}</div>
-                <div className="productCard_infoAdd">Add to cart</div>
-            </div>
+                {!same && <div className="productCard_infoAdd">Add to cart</div>}            </div>
         </Link>
     )
 }

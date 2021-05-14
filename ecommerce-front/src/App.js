@@ -7,6 +7,7 @@ import Home from './components/Home/Home';
 import Search from './components/Search/Search';
 import Header from './components/Header/Header'
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/search' exact component={Search} />
           <Route path='/product-detail/:productId' component={ProductDetail} />
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
